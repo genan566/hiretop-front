@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --variant-primary: #613cbd;
+  --variant-primary-1: 254, 129, 88;
+  --bacground-primary-variant: 250, 249, 245;
+  --max-w: 1280px;
+  --max-w-2: 1000px;
+  --max-w-3: 900px;
+  --nav-max-w: 1030px;
+  --pad-to-mw: calc(50% - var(--max-w)/2);
+  --pad-to-mw2: calc(50% - var(--max-w-2)/2);
+}
+
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --foreground-rgb: 255, 255, 255;
+//     --background-start-rgb: 0, 0, 0;
+//     --background-end-rgb: 0, 0, 0;
+//   }
+// }
+
+body {
+  color: rgb(var(--foreground-rgb));
+  font-family: 'Montserrat-Regular';
+  background: white;
+}
+
+h1{
+  margin: 0;
+}
+
+.bg-primary-variant {
+  background: rgb(var(--bacground-primary-variant)) !important;
+}
+
+#dash_content::-webkit-scrollbar {
+  display: none;
+}
+
+.max-nav {
+  max-width: var(--max-w);
+}
+
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: local('Montserrat-Regular'), url(../assets/fonts/Montserrat/static/Montserrat-Regular.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+  font-family: 'BebasNeue-Regular';
+  src: local('BebasNeue-Regular'), url(../assets/fonts/Bebas_Neue/BebasNeue-Regular.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+.bebase_regular {
+  font-family: "BebasNeue-Regular";
+}
+
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: local('Montserrat-Medium'), url(../assets/fonts/Montserrat/static/Montserrat-Medium.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: local('Montserrat-SemiBold'), url(../assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: local('Montserrat-Bold'), url(../assets/fonts/Montserrat/static/Montserrat-Bold.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: local('Montserrat-Light'), url(../assets/fonts/Montserrat/static/Montserrat-Light.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+
+
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: local('Montserrat-ExtraBold'), url(../assets/fonts/Montserrat/static/Montserrat-ExtraBold.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+.font-MontRegular {
+  font-family: "Montserrat-Regular";
+}
+
+.font-MontMedium {
+  font-family: "Montserrat-Medium";
+}
+
+.font-MontSemiBold {
+  font-family: "Montserrat-SemiBold";
+}
+
+.font-MontBold {
+  font-family: "Montserrat-Bold";
+}
+
+.font-MontExtraBold {
+  font-family: "Montserrat-ExtraBold";
+}
+
+.font-MontLight {
+  font-family: "Montserrat-Light";
+}
+
+.selectDisable {
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -o-user-select: none !important;
+  user-select: none !important;
+}
+
+#folio-carousel {
+  background-color: transparent;
+  padding-left: calc(var(--pad-to-mw) + 2rem);
+
+  @media screen and (max-width:1024px) {
+    padding-left: 10vw;
+  }
+
+  @media screen and (max-width:1024px) {
+    padding-left: 5vw;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.w-wrapped {
+  min-width: calc(var(--max-w)/4);
+
+  @media only screen and (max-width:780px) {
+    min-width: calc((50lvw)/2);
+  }
+}
