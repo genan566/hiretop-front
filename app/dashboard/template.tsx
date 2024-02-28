@@ -1,13 +1,6 @@
 'use client'
 
 import DashboardNav from '@/app/dashboard/DashboardNav'
-import AddClientModal from '@/components/AddClientModal'
-import AddFacturationModal from '@/components/AddFacturationModal'
-import AddProductModal from '@/components/AddProductModal'
-import EditClient from '@/components/EditClientModal'
-import EditFacturation from '@/components/EditFacturationModal'
-
-import LoadEntities from '@/ctx/LoadEntities'
 import { RootModalProvider } from '@/ctx/modalsCtx'
 import useAccountCtx from '@/utils/hooks/useAccountCtx'
 import { useRouter } from 'next/navigation'
@@ -16,6 +9,7 @@ import React from 'react'
 import DashNavMobile from './DashNavMobile'
 import useModal from '@/utils/hooks/useModal'
 import DashboardNavMobile from './DashboardNavMobile'
+import AddSubmission from '@/components/AddSubmission'
 
 const DashboardLayout = ({
     children,
@@ -36,8 +30,7 @@ const DashboardLayout = ({
                     <DashboardNav />
                     <DashboardNavMobile />
                     <DashNavMobile />
-                    <EditClient />
-                    <AddClientModal />
+                    <AddSubmission />
 
                     <div id='dash_content' className="p-12 px-10 max-[1024px]:pt-[6rem] h-screen max-[10240px]:px-5 relative max-w-[1300px] overflow-y-scroll w-full">
                         {/* {

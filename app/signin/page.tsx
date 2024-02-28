@@ -169,12 +169,14 @@ const SigninPage = () => {
           </label>
         </div>
 
-        <button
-          type="submit"
-          className="bg-[var(--variant-primary)] shadow-lg w-full py-2 p-3 text-[.8rem] transition-all active:scale-95 rounded-md text-white font-MontSemiBold cursor-pointer"
-        >
-          Sauvegarder
-        </button>
+        {!token && (
+          <button
+            type="submit"
+            className="bg-[var(--variant-primary)] shadow-lg w-full py-2 p-3 text-[.8rem] transition-all active:scale-95 rounded-md text-white font-MontSemiBold cursor-pointer"
+          >
+            Sauvegarder
+          </button>
+        )}
 
         <div className="mt-4">
           <p className="font-MontRegular text-[.85rem]">

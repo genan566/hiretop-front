@@ -8,10 +8,22 @@ import { RiSearch2Line } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { TextField } from "@radix-ui/themes";
 import useAccountCtx from "@/utils/hooks/useAccountCtx";
+import useModal from "@/utils/hooks/useModal";
 
 const DashBoardPage = () => {
-  const { employments } = useStoreData();
+  const { employments, submitemployment } = useStoreData();
   const { isEnterprise } = useAccountCtx();
+  const { setmodalAddClient, setmodalSelectedEmployment } = useModal();
+  const { candidateData } = useAccountCtx();
+
+  const nonSubmitEmployment = React.useMemo(() => {
+    if (isEnterprise) return employments;
+    return employments.filter(
+      (i) =>
+        submitemployment.filter((sb) => sb.submiter !== candidateData.id).length
+      // .find((sb) => sb.employment === i.id)
+    );
+  }, [employments, submitemployment, candidateData, isEnterprise]);
 
   return (
     <motion.div
@@ -33,10 +45,14 @@ const DashBoardPage = () => {
       )}
 
       <div className="mt-[1rem]">
-        {employments.map((it, idx) => {
+        {nonSubmitEmployment.map((it, idx) => {
           return (
             <div
               key={idx}
+              onClick={() => {
+                setmodalAddClient(true);
+                setmodalSelectedEmployment(it.id);
+              }}
               className="w-full flex border-[1px] border-black/20 p-4 bg-white shadow-md items-center justify-between"
             >
               <div className="">
@@ -51,6 +67,12 @@ const DashBoardPage = () => {
             </div>
           );
         })}
+
+        {!Boolean(nonSubmitEmployment.length) && (
+          <p className="font-MontRegular text-center mx-auto w-fit text-[.85rem] mt-[2rem]">
+            Aucune offre {`n'est`} disponible pour le moment.
+          </p>
+        )}
       </div>
     </motion.div>
   );

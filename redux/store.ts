@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import employments from "./slices/employments";
+import submitemployments from "./slices/submitemployments";
 
 export const store = configureStore({
   reducer: {
     employments: employments,
+    submitemployments: submitemployments,
   },
 });
 

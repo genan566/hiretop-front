@@ -1,5 +1,6 @@
 import usePullClients from '@/utils/hooks/usePullClients'
 import usePullEmployments from '@/utils/hooks/usePullEmployments'
+import usePullSubmitEmployments from '@/utils/hooks/usePullSubmitEmployments'
 import React from 'react'
 
 const LoadEntities = ({
@@ -9,6 +10,7 @@ const LoadEntities = ({
 }) => {
     // usePullClients()
     usePullEmployments()
+    usePullSubmitEmployments()
 
     return (
         <>

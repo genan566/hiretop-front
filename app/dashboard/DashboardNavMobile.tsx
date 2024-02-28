@@ -60,24 +60,7 @@ const DashboardNavMobile = () => {
               Dashboard
             </Link>
           </li>
-          <li
-            className={`${
-              pathname.includes("dashboard/clients")
-                ? "bg-[var(--variant-primary)] text-white"
-                : "bg-transparent hover:bg-[var(--variant-primary)] hover:text-white"
-            } text-[.9rem] px-[1rem] rounded-md active:scale-95 transition-all cursor-pointer py-2`}
-          >
-            <Link
-              onClick={() => setmobNav(true)}
-              href="/dashboard/clients"
-              className="flex items-center gap-2"
-            >
-              <span className="text-[1.2rem]">
-                <IoIosPeople />
-              </span>
-              Clients
-            </Link>
-          </li>
+          
         </ul>
       </div>
 

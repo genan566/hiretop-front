@@ -1,59 +1,48 @@
-import { ProductsType } from "@/utils/schemas/EmploymentSchema";
+import { EmploymentsType } from "@/utils/schemas/EmploymentSchema";
 import { UserType } from "@/utils/schemas/UserSchema";
-import React from "react"
+import React from "react";
 
 export interface ValuesModalsDataTypes {
-    modalFacturation: boolean,
-    modalClient: boolean,
-    modalSelectProduct: boolean,
-    modalAddClient: boolean,
-    modalAddFacturation: boolean,
-    modalAddProduct: boolean,
-    modalProduct: boolean,
-    modalProductData: ProductsType,
-    modalClientData: UserType,
-    modalFactureDataID: number,
-    mobNav: boolean,
+  modalClient: boolean;
+  modalAddClient: boolean;
+  mobNav: boolean;
+  modalSelectedEmployment: number;
 
-    setmobNav: React.Dispatch<React.SetStateAction<boolean>>,
-    setmodalFactureDataID: React.Dispatch<React.SetStateAction<number>>,
-    setmodalAddClient: React.Dispatch<React.SetStateAction<boolean>>,
-    setmodalAddFacturation: React.Dispatch<React.SetStateAction<boolean>>,
-    setmodalSelectProduct: React.Dispatch<React.SetStateAction<boolean>>,
-    setmodalAddProduct: React.Dispatch<React.SetStateAction<boolean>>,
-    setmodalClient: React.Dispatch<React.SetStateAction<boolean>>,
-    setmodalProduct: React.Dispatch<React.SetStateAction<boolean>>,
-    setModalProductData: React.Dispatch<React.SetStateAction<ProductsType>>,
-    setmodalClientData: React.Dispatch<React.SetStateAction<UserType>>,
-    setmodalFacturation: React.Dispatch<React.SetStateAction<boolean>>
+  setmobNav: React.Dispatch<React.SetStateAction<boolean>>;
+  setmodalAddClient: React.Dispatch<React.SetStateAction<boolean>>;
+  setmodalClient: React.Dispatch<React.SetStateAction<boolean>>;
+  setmodalSelectedEmployment: React.Dispatch<React.SetStateAction<number>>;
 }
-export const RootModalsContext = React.createContext<ValuesModalsDataTypes>({} as ValuesModalsDataTypes);
+export const RootModalsContext = React.createContext<ValuesModalsDataTypes>(
+  {} as ValuesModalsDataTypes
+);
 
-export const RootModalProvider = ({ children }: { children: React.ReactNode }) => {
-    const [modalFacturation, setmodalFacturation] = React.useState<boolean>(false)
-    const [modalClient, setmodalClient] = React.useState<boolean>(false)
-    const [modalProduct, setmodalProduct] = React.useState<boolean>(false)
-    const [mobNav, setmobNav] = React.useState<boolean>(false)
+export const RootModalProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [modalClient, setmodalClient] = React.useState<boolean>(false);
+  const [mobNav, setmobNav] = React.useState<boolean>(false);
 
-    const [modalAddClient, setmodalAddClient] = React.useState<boolean>(false)
-    const [modalAddFacturation, setmodalAddFacturation] = React.useState<boolean>(false)
-    const [modalAddProduct, setmodalAddProduct] = React.useState<boolean>(false)
-    const [modalSelectProduct, setmodalSelectProduct] = React.useState<boolean>(false)
+  const [modalAddClient, setmodalAddClient] = React.useState<boolean>(false);
+  const [modalSelectedEmployment, setmodalSelectedEmployment] =
+    React.useState<number>(0);
 
-    const [modalProductData, setModalProductData] = React.useState<ProductsType>({} as ProductsType)
-    const [modalFactureDataID, setmodalFactureDataID] = React.useState<number>(0)
-    const [modalClientData, setmodalClientData] = React.useState<UserType>({} as UserType)
-
-    return <RootModalsContext.Provider value={{
-        modalFacturation, setmodalFacturation,
-        modalProductData, setModalProductData, modalProduct, setmodalProduct, modalClient,
+  return (
+    <RootModalsContext.Provider
+      value={{
+        mobNav,
+        modalAddClient,
+        modalClient,
+        setmobNav,
+        setmodalAddClient,
         setmodalClient,
-        modalAddClient, setmodalAddClient,
-        modalAddFacturation, setmodalAddFacturation,
-        modalAddProduct, setmodalAddProduct, modalClientData,
-        setmodalClientData, modalSelectProduct, mobNav, setmobNav,
-        setmodalSelectProduct, modalFactureDataID, setmodalFactureDataID
-    }}>
-        {children}
+        modalSelectedEmployment,
+        setmodalSelectedEmployment,
+      }}
+    >
+      {children}
     </RootModalsContext.Provider>
-}
+  );
+};

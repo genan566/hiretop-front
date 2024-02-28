@@ -6,9 +6,13 @@ import { useSelector } from "react-redux";
 
 const useStoreData = () => {
   const employments = useSelector((state: RootState) => state.employments);
+  const submitemployments = useSelector(
+    (state: RootState) => state.submitemployments
+  );
 
   return {
     ...employments,
+    ...submitemployments,
   };
 };
 
