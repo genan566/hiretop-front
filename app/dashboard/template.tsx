@@ -10,6 +10,8 @@ import DashNavMobile from './DashNavMobile'
 import useModal from '@/utils/hooks/useModal'
 import DashboardNavMobile from './DashboardNavMobile'
 import AddSubmission from '@/components/AddSubmission'
+import AddEmployment from '@/components/AddEmployment'
+import EditEmployment from '@/components/EditEmployment'
 
 const DashboardLayout = ({
     children,
@@ -31,6 +33,8 @@ const DashboardLayout = ({
                     <DashboardNavMobile />
                     <DashNavMobile />
                     <AddSubmission />
+                    <AddEmployment />
+                    <EditEmployment />
 
                     <div id='dash_content' className="p-12 px-10 max-[1024px]:pt-[6rem] h-screen max-[10240px]:px-5 relative max-w-[1300px] overflow-y-scroll w-full">
                         {/* {

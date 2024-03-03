@@ -126,7 +126,7 @@ const SigninPage = () => {
           {...register("name", { required: true })}
           radius="large"
           size={"3"}
-          placeholder="Entrez un nom au client"
+          placeholder="Entrez un nom"
           my={"3"}
         />
         <TextField.Input
@@ -135,7 +135,7 @@ const SigninPage = () => {
           type="email"
           size={"3"}
           my={"3"}
-          placeholder="Entrez le mail du client"
+          placeholder="Entrez le mail"
         />
         <TextField.Input
           radius="large"
@@ -143,7 +143,7 @@ const SigninPage = () => {
           type="password"
           size={"3"}
           my={"3"}
-          placeholder="Entrez le mot de passe du client"
+          placeholder="Entrez le mot de passe"
         />
         <TextField.Input
           radius="large"
@@ -151,7 +151,7 @@ const SigninPage = () => {
           type="password"
           size={"3"}
           my={"3"}
-          placeholder="Confirmez le mot de passe du client"
+          placeholder="Confirmez le mot de passe"
         />
         <div className="my-10 mx-auto w-fit flex items-center gap-4">
           <input

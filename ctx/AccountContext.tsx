@@ -1,7 +1,9 @@
 import { AuthAPI } from "@/APIs/AuthApi";
 import { ClientsAPI } from "@/APIs/ClientsAPI";
+import { EnterpriseAPI } from "@/APIs/EnterpriseAPI";
 import usePullAccountProfile from "@/utils/hooks/usePullAccountProfile";
 import { notify } from "@/utils/notifier";
+import { EnterpriseSchemaType } from "@/utils/schemas/EnterpriseSchema";
 import { TalentSchemaType } from "@/utils/schemas/TalentSchema";
 import { UserType } from "@/utils/schemas/UserSchema";
 import { useRouter } from "next/navigation";
@@ -12,10 +14,12 @@ export interface ValuesAccountDataTypes {
   isEnterprise: boolean;
   userProfile: UserType;
   candidateData: TalentSchemaType;
+  enterpriseData: EnterpriseSchemaType;
   setIsEnterprise: React.Dispatch<React.SetStateAction<boolean>>;
   setToken: React.Dispatch<React.SetStateAction<string>>;
   setUserProfile: React.Dispatch<React.SetStateAction<UserType>>;
   setCandidateData: React.Dispatch<React.SetStateAction<TalentSchemaType>>;
+  setEnterpriseData: React.Dispatch<React.SetStateAction<EnterpriseSchemaType>>;
 }
 export const AccountContext = React.createContext<ValuesAccountDataTypes>(
   {} as ValuesAccountDataTypes
@@ -36,17 +40,26 @@ export const AccountContextProvider = ({
     {} as TalentSchemaType
   );
 
-  React.useEffect(() => {
-    if (userProfile.id) {
-      (async () => {
-        const clientAPI = new ClientsAPI();
-        const responseClient = await clientAPI.retrive_client(userProfile?.id);
-        if (responseClient?.length) {
-          setCandidateData(responseClient[0]);
-        }
-      })();
+  const [enterpriseData, setEnterpriseData] =
+    React.useState<EnterpriseSchemaType>({} as EnterpriseSchemaType);
+
+  const loadEnterprise = async () => {
+    const enterprise = new EnterpriseAPI();
+    const responseEnterprise = await enterprise.retrive_enterprise(
+      userProfile?.id
+    );
+    if (responseEnterprise?.length) {
+      setEnterpriseData(responseEnterprise[0]);
     }
-  }, [userProfile]);
+  };
+
+  const loadCandidate = async () => {
+    const clientAPI = new ClientsAPI();
+    const responseClient = await clientAPI.retrive_client(userProfile?.id);
+    if (responseClient?.length) {
+      setCandidateData(responseClient[0]);
+    }
+  };
 
   const router = useRouter();
   const loadToken = () => {
@@ -90,6 +103,16 @@ export const AccountContextProvider = ({
     Boolean(token?.length) && !Boolean(userProfile.id) && loadProfile();
   }, [token]);
 
+  React.useEffect(() => {
+    if (userProfile.id) {
+      if (isEnterprise) {
+        loadEnterprise();
+      } else {
+        loadCandidate();
+      }
+    }
+  }, [userProfile, isEnterprise]);
+
   return (
     <AccountContext.Provider
       value={{
@@ -101,6 +124,8 @@ export const AccountContextProvider = ({
         setIsEnterprise,
         candidateData,
         setCandidateData,
+        setEnterpriseData,
+        enterpriseData,
       }}
     >
       {children}

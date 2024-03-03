@@ -10,6 +10,7 @@ import {
   refreshsubmitemployment,
   toggleRefreshsubmitemployment,
 } from "@/redux/slices/submitemployments";
+import { ListSubmitEmploymentsSchema } from "../schemas/SubmitEmploymentSchema";
 
 const usePullSubmitEmployments = () => {
   const employmentsAPI = new SubmissionAPI();
@@ -46,7 +47,7 @@ const usePullSubmitEmployments = () => {
     }
   }, [refreshingsubmitemployment]);
 
-  const validateProducts = ListEmploymentsSchema.safeParse(data).success
+  const validateProducts = ListSubmitEmploymentsSchema.safeParse(data).success
     ? data
     : null;
 

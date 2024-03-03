@@ -23,7 +23,7 @@ type Inputs = {
   motivation_letter: string;
 };
 
-const IValidProducSchema = z.object({
+const IValidSubmissionSchema = z.object({
   motivation_letter: z.string(),
 });
 
@@ -56,7 +56,7 @@ const useAddClient = () => {
     reset,
     formState: { errors },
   } = useForm<Inputs>({
-    resolver: zodResolver(IValidProducSchema),
+    resolver: zodResolver(IValidSubmissionSchema),
   });
 
   const clearModalndRefresh = () => {

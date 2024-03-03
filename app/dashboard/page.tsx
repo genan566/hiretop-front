@@ -13,17 +13,18 @@ import useModal from "@/utils/hooks/useModal";
 const DashBoardPage = () => {
   const { employments, submitemployment } = useStoreData();
   const { isEnterprise } = useAccountCtx();
-  const { setmodalAddClient, setmodalSelectedEmployment } = useModal();
+  const {
+    setmodalAddClient,
+    setmodalSelectedEmployment,
+    setmodalAddEmployment,
+    setmodalEditEmployment,
+    modalSelectedEmployment,
+  } = useModal();
   const { candidateData } = useAccountCtx();
 
   const nonSubmitEmployment = React.useMemo(() => {
-    if (isEnterprise) return employments;
-    return employments.filter(
-      (i) =>
-        submitemployment.filter((sb) => sb.submiter !== candidateData.id).length
-      // .find((sb) => sb.employment === i.id)
-    );
-  }, [employments, submitemployment, candidateData, isEnterprise]);
+    return employments;
+  }, [employments]);
 
   return (
     <motion.div
@@ -39,7 +40,13 @@ const DashBoardPage = () => {
       </h5>
 
       {isEnterprise && (
-        <button className="bg-blue-400 transition-all active:scale-95 rounded-full py-1 text-white font-MontMedium px-4 text-[.9rem] mt-[2rem] mb-[1rem] shadow-md">
+        <button
+          onClick={() => {
+            setmodalAddEmployment(true);
+            // setmodalSelectedEmployment(it.id);
+          }}
+          className="bg-blue-400 transition-all active:scale-95 rounded-full py-1 text-white font-MontMedium px-4 text-[.9rem] mt-[2rem] mb-[1rem] shadow-md"
+        >
           Créer un nouveau
         </button>
       )}
@@ -49,11 +56,7 @@ const DashBoardPage = () => {
           return (
             <div
               key={idx}
-              onClick={() => {
-                setmodalAddClient(true);
-                setmodalSelectedEmployment(it.id);
-              }}
-              className="w-full flex border-[1px] border-black/20 p-4 bg-white shadow-md items-center justify-between"
+              className="w-full flex border-[1px] border-black/20 p-4 bg-white shadow-md items-center justify-between mb-[1rem]"
             >
               <div className="">
                 <h2 className="font-MontSemiBold text-black">{it.name}</h2>
@@ -61,9 +64,34 @@ const DashBoardPage = () => {
                   {it.description}
                 </p>
               </div>
-              <button className="bg-blue-400 transition-all active:scale-95 rounded-full py-1 text-white font-MontMedium px-4 text-[.9rem] shadow-md">
-                Postuler
-              </button>
+              {isEnterprise ? (
+                <button
+                  onClick={() => {
+                    setmodalEditEmployment(true);
+                    setmodalSelectedEmployment(it.id);
+                  }}
+                  className="bg-blue-400 transition-all active:scale-95 rounded-full py-1 text-white font-MontMedium px-4 text-[.9rem] shadow-md"
+                >
+                  Edit
+                </button>
+              ) : (
+                <>
+                  {!submitemployment.find((sbm) => sbm.employment === it.id) &&
+                    !submitemployment.find(
+                      (sbm) => sbm.submiter !== candidateData.id
+                    ) && (
+                      <button
+                        onClick={() => {
+                          setmodalAddClient(true);
+                          setmodalSelectedEmployment(it.id);
+                        }}
+                        className="bg-blue-400 transition-all active:scale-95 rounded-full py-1 text-white font-MontMedium px-4 text-[.9rem] shadow-md"
+                      >
+                        Postuler
+                      </button>
+                    )}
+                </>
+              )}
             </div>
           );
         })}
